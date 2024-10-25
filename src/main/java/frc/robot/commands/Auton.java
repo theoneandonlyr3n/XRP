@@ -4,10 +4,12 @@ import static edu.wpi.first.wpilibj2.command.Commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class Auton{
-    public static Command basicAuton(){
-         return sequence(
-            
-         );
-    }
 
+    private final XRPDrivetrain m_drive = new XRPDrivetrain();
+
+    public Command basicAuton(){
+         return sequence(
+            runOnce(() -> m_drive.tankDrive(4,4))
+         ).withName("Basic Auton");
+    }
 }
