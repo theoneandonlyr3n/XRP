@@ -1,13 +1,13 @@
 package frc.robot.commands;
 import frc.robot.subsystems.XRPDrivetrain;
-import edu.wpi.first.wpilibj2.command.*;
-import 
+import static edu.wpi.first.wpilibj2.command.Commands.*;
+import edu.wpi.first.wpilibj2.command.Command;
 
-public class Auton {
+public class Auton{
     public static Command basicAuton(){
-        var auton = Commands.sequence(
+         return sequence(
             
-        );
+         );
     }
 
 }
