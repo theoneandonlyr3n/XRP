@@ -8,7 +8,7 @@ import frc.robot.subsystems.XRPDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.function.Supplier;
 
-public class TankDrive extends Command {
+public class TankDrive extends Command{
   private final XRPDrivetrain m_drivetrain;
   private final Supplier<Double> m_leftMotorSpeed;
   private final Supplier<Double> m_rightMotorSpeed;
