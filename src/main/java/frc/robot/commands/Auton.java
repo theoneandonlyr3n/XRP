@@ -1,18 +1,60 @@
 package frc.robot.commands;
 import frc.robot.subsystems.XRPDrivetrain;
-import static edu.wpi.first.wpilibj2.command.Commands.*;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class Auton extends Command{
 
-    private final XRPDrivetrain m_drive = new XRPDrivetrain();
+    private final XRPDrivetrain m_drive;
 
-    public Command basicAuton(){
-         return sequence(
-            race(
-                new TankDrive(m_drive, () -> 4.0, () -> 4.0),
-                waitSeconds(4)
+    public Auton(XRPDrivetrain xrpDrivetrain){
+        m_drive = xrpDrivetrain;
+    }
+
+    public void initialize(){
+
+        Commands.sequence(
+            Commands.race(
+                Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
+                Commands.waitSeconds(1)
+            ),
+            
+            Commands.race(
+                Commands.run(() -> m_drive.tankDrive(0.5,-0.5), m_drive),
+                Commands.waitSeconds(1.6)
+            ),
+
+            Commands.race(
+                Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
+                Commands.waitSeconds(1)
+            ),
+
+            Commands.race(
+                Commands.run(() -> m_drive.tankDrive(0.5,-0.5), m_drive),
+                Commands.waitSeconds(1.6)
+            ),
+
+            Commands.race(
+                Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
+                Commands.waitSeconds(1)
+            ),
+
+            Commands.race(
+                Commands.run(() -> m_drive.tankDrive(0.5,-0.5), m_drive),
+                Commands.waitSeconds(1.6)
+            ),
+
+            Commands.race(
+                Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
+                Commands.waitSeconds(1)
+            ),
+
+            Commands.race(
+                Commands.run(() -> m_drive.tankDrive(0.5,-0.5), m_drive),
+                Commands.waitSeconds(1.6)
             )
-         ).withName("Basic Auton");
+
+                
+        ).schedule();
     }
 }
