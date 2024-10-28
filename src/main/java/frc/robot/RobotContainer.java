@@ -10,6 +10,7 @@ import frc.robot.subsystems.XRPDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.Auton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -49,9 +50,10 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return new Auton();
   }
 
   public Command getTankDriveCommand() {
