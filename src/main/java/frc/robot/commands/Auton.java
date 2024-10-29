@@ -21,40 +21,16 @@ public class Auton extends Command{
             
             Commands.race(
                 Commands.run(() -> m_drive.tankDrive(0.5,-0.5), m_drive),
-                Commands.waitSeconds(1.6)
+                Commands.waitSeconds(2.9)
             ),
 
             Commands.race(
                 Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
                 Commands.waitSeconds(1)
-            ),
-
-            Commands.race(
-                Commands.run(() -> m_drive.tankDrive(0.5,-0.5), m_drive),
-                Commands.waitSeconds(1.6)
-            ),
-
-            Commands.race(
-                Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
-                Commands.waitSeconds(1)
-            ),
-
-            Commands.race(
-                Commands.run(() -> m_drive.tankDrive(0.5,-0.5), m_drive),
-                Commands.waitSeconds(1.6)
-            ),
-
-            Commands.race(
-                Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
-                Commands.waitSeconds(1)
-            ),
-
-            Commands.race(
-                Commands.run(() -> m_drive.tankDrive(0.5,-0.5), m_drive),
-                Commands.waitSeconds(1.6)
             )
 
                 
         ).schedule();
     }
 }
+
