@@ -16,17 +16,17 @@ public class Auton extends Command{
         Commands.sequence(
             Commands.race(
                 Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
-                Commands.waitSeconds(1)
+                Commands.waitSeconds(1.5)
             ),
             
             Commands.race(
                 Commands.run(() -> m_drive.tankDrive(0.5,-0.5), m_drive),
-                Commands.waitSeconds(2.9)
+                Commands.waitSeconds(3)
             ),
 
             Commands.race(
                 Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
-                Commands.waitSeconds(1)
+                Commands.waitSeconds(1.5)
             )
 
                 
