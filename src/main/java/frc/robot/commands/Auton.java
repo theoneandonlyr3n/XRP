@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class Auton extends Command{
 
     private final XRPDrivetrain m_drive;
+    
 
     public Auton(XRPDrivetrain xrpDrivetrain){
         m_drive = xrpDrivetrain;
@@ -31,6 +32,10 @@ public class Auton extends Command{
                 Commands.waitSeconds(1.5)
             )
 
+        
+
+
+          
                 
         ).schedule();
     }
