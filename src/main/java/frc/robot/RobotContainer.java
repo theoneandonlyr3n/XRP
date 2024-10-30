@@ -5,8 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.XRPArm;
 import frc.robot.subsystems.XRPDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.Auton;
@@ -26,7 +28,7 @@ public class RobotContainer {
   //create an object for the auton
   private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
 
-
+  private final XRPArm m_arm = new XRPArm();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -44,6 +46,10 @@ public class RobotContainer {
 
     m_xrpDrivetrain.setDefaultCommand(getTankDriveCommand());
     
+    driver.leftTrigger()
+      .onTrue(new InstantCommand(() -> m_arm.setAngle(180), m_arm))
+      .onFalse(new InstantCommand(() -> m_arm.setAngle(0), m_arm));
+      
   }
     
   /**
@@ -61,4 +67,5 @@ public class RobotContainer {
     return new TankDrive(
       m_xrpDrivetrain, () -> -driver.getLeftY(), () -> -driver.getRightY());
   }
+
 }
