@@ -16,7 +16,11 @@ public class Sensor {
 
     private final DoubleSupplier leftVoltage = () -> leftSensor.getVoltage();
     private final DoubleSupplier rightVoltage = () -> rightSensor.getVoltage();
- 
+
+    
+
+
+    
 
 
 
