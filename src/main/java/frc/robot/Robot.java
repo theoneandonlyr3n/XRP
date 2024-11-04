@@ -102,8 +102,8 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    System.out.println(leftVoltage);
-    System.out.println(rightVoltage);
+    System.out.println(leftVoltage.getAsDouble());
+    System.out.println(rightVoltage.getAsDouble());
 
 
   }

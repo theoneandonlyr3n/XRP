@@ -7,7 +7,7 @@ import java.util.function.DoubleSupplier;
 
 
 
-public class Sensor {
+public class SensorOne {
 
     private final AnalogInput leftSensor = new AnalogInput(0);
     private final AnalogInput rightSensor = new AnalogInput(1);
