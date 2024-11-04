@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.Sensor;
 import frc.robot.subsystems.XRPArm;
 import frc.robot.subsystems.XRPDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -30,8 +31,12 @@ public class RobotContainer {
 
   private final CommandXboxController driver = new CommandXboxController(0);
 
+  private final Sensor m_sensor = new Sensor();
+
   //create an object for the auton
+  //private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
   private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
+
 
   private final XRPArm m_arm = new XRPArm();
 
