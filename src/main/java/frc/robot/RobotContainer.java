@@ -79,8 +79,8 @@ public class RobotContainer {
   }
 
  
-public Command getSensorTestCommand() {
-  return Commands.run(() -> System.out.println(leftSensor + " , " + rightSensor));
+  public Command getSensorTestCommand() {
+    return Commands.run(() -> System.out.println(leftSensor + " , " + rightSensor));
 
 
   }
