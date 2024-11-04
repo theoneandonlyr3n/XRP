@@ -38,9 +38,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    System.out.println(leftVoltage.getAsDouble());
-    System.out.println(rightVoltage.getAsDouble());
   }
+    
 
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
@@ -99,13 +98,13 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
+    m_robotContainer.getSensorTestCommand().schedule();
   }
 
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    System.out.println(leftVoltage.getAsDouble());
-    System.out.println(rightVoltage.getAsDouble());
+    
 
 
   }

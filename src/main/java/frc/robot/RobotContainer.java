@@ -8,10 +8,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.XRPArm;
 import frc.robot.subsystems.XRPDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.Auton;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,6 +24,9 @@ import frc.robot.commands.Auton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final XRPDrivetrain m_xrpDrivetrain = new XRPDrivetrain();
+  private final AnalogInput leftSensor = new AnalogInput(0);
+  private final AnalogInput rightSensor = new AnalogInput(1);
+
 
   private final CommandXboxController driver = new CommandXboxController(0);
 
@@ -68,4 +73,10 @@ public class RobotContainer {
       m_xrpDrivetrain, () -> -driver.getLeftY(), () -> -driver.getRightY());
   }
 
+ 
+public Command getSensorTestCommand() {
+  return Commands.run(() -> System.out.println(leftSensor + " , " + rightSensor));
+
+
+  }
 }
