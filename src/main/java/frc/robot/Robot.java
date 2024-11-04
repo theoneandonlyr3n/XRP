@@ -19,11 +19,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  private final AnalogInput leftSensor = new AnalogInput(0);
-  private final AnalogInput rightSensor = new AnalogInput(1);
 
-  private final DoubleSupplier leftVoltage = () -> leftSensor.getVoltage();
-  private final DoubleSupplier rightVoltage = () -> rightSensor.getVoltage();
 
   
 
