@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.Sensor;
+//import frc.robot.subsystems.SensorTwo;
 import frc.robot.subsystems.XRPArm;
 import frc.robot.subsystems.XRPDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.Auton;
+import frc.robot.commands.SensorAuton;
 import edu.wpi.first.wpilibj.AnalogInput;
 
 /**
@@ -25,20 +27,22 @@ import edu.wpi.first.wpilibj.AnalogInput;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final XRPDrivetrain m_xrpDrivetrain = new XRPDrivetrain();
-  private final AnalogInput leftSensor = new AnalogInput(0);
-  private final AnalogInput rightSensor = new AnalogInput(1);
+  //private final AnalogInput leftSensor = new AnalogInput(0);
+  //private final AnalogInput rightSensor = new AnalogInput(1);
 
 
   private final CommandXboxController driver = new CommandXboxController(0);
 
-  private final Sensor m_sensor = new Sensor();
+ private final Sensor m_sensor = new Sensor();
 
   //create an object for the auton
   //private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
-  private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
+  private final Command m_autoCommand = new SensorAuton(m_xrpDrivetrain, m_sensor);
 
 
   private final XRPArm m_arm = new XRPArm();
+
+ 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -79,9 +83,9 @@ public class RobotContainer {
   }
 
  
-  public Command getSensorTestCommand() {
-    return Commands.run(() -> System.out.println(leftSensor + " , " + rightSensor));
+  //public Command getSensorTestCommand() {
+    //return Commands.run(() -> System.out.println(leftSensor + " , " + rightSensor));
 
 
-  }
+  //}
 }
