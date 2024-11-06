@@ -19,6 +19,10 @@ public class Sensor {
         return false;
     }
 
+    public double getVoltageValue(){
+        return leftSensor.getVoltage();
+    }
+
     
  
 
