@@ -31,12 +31,7 @@ public class Auton extends Command{
                 Commands.run(() -> m_drive.tankDrive(0.7, 0.7), m_drive),
                 Commands.waitSeconds(1.5)
             )
-
-        
-
-
-          
-                
+              
         ).schedule();
     }
 }

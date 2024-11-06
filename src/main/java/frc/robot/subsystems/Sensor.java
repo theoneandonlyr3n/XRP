@@ -13,7 +13,7 @@ public class Sensor {
     private final DoubleSupplier leftVoltage = () -> leftSensor.getVoltage();
 
     public boolean colorBlack(){
-        if (leftVoltage.getAsDouble() >= 4.8 ){
+        if (leftVoltage.getAsDouble() >= 3.5 ){
             return true;
         }
         return false;

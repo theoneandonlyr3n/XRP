@@ -33,11 +33,11 @@ public class RobotContainer {
 
   private final CommandXboxController driver = new CommandXboxController(0);
 
- private final Sensor m_sensor = new Sensor();
+  //private final Sensor m_sensor = new Sensor();
 
   //create an object for the auton
   //private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
-  private final Command m_autoCommand = new SensorAuton(m_xrpDrivetrain, m_sensor);
+  private final Command m_autoCommand = new SensorAuton(m_xrpDrivetrain);
 
 
   private final XRPArm m_arm = new XRPArm();
@@ -84,7 +84,7 @@ public class RobotContainer {
 
  
   //public Command getSensorTestCommand() {
-    //return Commands.run(() -> System.out.println(leftSensor + " , " + rightSensor));
+    //return Commands.run(() -> System.out.println(leftSensor.getVoltage()));
 
 
   //}

@@ -14,29 +14,17 @@ public class SensorAuton extends Command {
     private final XRPDrivetrain m_drivetrain;
     private double m_leftMotorSpeed = 1;
     private double m_rightMotorSpeed = 1;
-    private final Sensor m_sensor;
 
-    public SensorAuton(XRPDrivetrain drivetrain, Sensor sensor){
+    public SensorAuton(XRPDrivetrain drivetrain){
         m_drivetrain = drivetrain;
-        m_sensor = sensor;
+        
     }
 
     public void initialize(){
 
-        BooleanSupplier color = () -> m_sensor.colorBlack();
-        Trigger isBlack = new Trigger(color);
-        isBlack
-                .onTrue(
-                    Commands.sequence(
-                        Commands.runOnce(() -> m_leftMotorSpeed = 0),
-                        Commands.runOnce(() -> m_rightMotorSpeed = 0)
-                    )
-            );
-
         Commands.sequence(
             Commands.race(
-                Commands.run(() -> m_drivetrain.tankDrive(m_rightMotorSpeed, m_leftMotorSpeed), m_drivetrain),
-                Commands.waitUntil(isBlack)
+                Commands.run(() -> m_drivetrain.tankDrive(m_rightMotorSpeed, m_leftMotorSpeed), m_drivetrain)
             )
         ).schedule();
 
