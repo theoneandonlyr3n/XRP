@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.Sensor;
+import frc.robot.subsystems.Superstructure;
 //import frc.robot.subsystems.SensorTwo;
 import frc.robot.subsystems.XRPArm;
 import frc.robot.subsystems.XRPDrivetrain;
@@ -13,9 +14,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.auton.Auton;
+import frc.robot.auton.AutonChooser;
 import frc.robot.commands.TankDrive;
-import frc.robot.commands.Auton;
-import frc.robot.commands.SensorAuton;
 import edu.wpi.first.wpilibj.AnalogInput;
 
 /**
@@ -37,7 +38,9 @@ public class RobotContainer {
 
   //create an object for the auton
   //private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
-  private final Command m_autoCommand = new SensorAuton(m_xrpDrivetrain);
+  private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
+
+  private final Superstructure m_superstructure = new Superstructure(m_xrpDrivetrain, driver.a());
 
 
   private final XRPArm m_arm = new XRPArm();
@@ -48,6 +51,8 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    mapAutonOptions();
+    AutonChooser.putChooser();
   }
 
   /**
@@ -64,6 +69,10 @@ public class RobotContainer {
       .onTrue(new InstantCommand(() -> m_arm.setAngle(180), m_arm))
       .onFalse(new InstantCommand(() -> m_arm.setAngle(0), m_arm));
       
+  }
+
+  private void mapAutonOptions() {
+        
   }
     
   /**
@@ -88,4 +97,12 @@ public class RobotContainer {
 
 
   //}
+
+  public void startSuperstructure() {
+    m_superstructure.start();
+  }
+
+  public Runnable superstructureFastPeriodic() {
+    return m_superstructure::fastPeriodic;
+  }
 }

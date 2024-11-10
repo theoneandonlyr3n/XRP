@@ -47,6 +47,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    addPeriodic(m_robotContainer.superstructureFastPeriodic(), 0.00125);
   }
     
 
@@ -62,16 +64,7 @@ public class Robot extends TimedRobot {
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
-    // block in order for anything in the Command-based framework to work.
-    CommandScheduler.getInstance().run();
-    Trigger joystickAButton = new JoystickButton(m_controller, 1);
-    joystickAButton
-        .onTrue(
-          Commands.sequence(
-            Commands.run(() -> m_leftMotorSpeed = -1),
-            Commands.run(() -> m_rightMotorSpeed = 1)
-          )
-        );
+    // block in order for anything in the Command-based framework to work
 
     
   }
@@ -86,6 +79,11 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
+
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+
+    m_robotContainer.startSuperstructure();
+
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {

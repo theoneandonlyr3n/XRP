@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.auton;
 import frc.robot.subsystems.XRPDrivetrain;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.Command;
