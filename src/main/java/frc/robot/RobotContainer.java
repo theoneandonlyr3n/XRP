@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.auton.Auton;
+import frc.robot.auton.AutonChooser;
 import frc.robot.commands.TankDrive;
 import edu.wpi.first.wpilibj.AnalogInput;
 
@@ -45,6 +46,8 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    mapAutonOptions();
+    AutonChooser.putChooser();
 
   }
 
@@ -64,6 +67,10 @@ public class RobotContainer {
       
   }
 
+  private void mapAutonOptions() {
+
+  }
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -73,7 +80,7 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return AutonChooser.getSelectedAuton();
   }
 
   public Command getTankDriveCommand() {

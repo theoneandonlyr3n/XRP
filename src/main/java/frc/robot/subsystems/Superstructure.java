@@ -21,14 +21,12 @@ public class Superstructure {
     private final Trigger stateTrig_move = new Trigger(m_stateTrigEventLoop, () -> m_currentState == xrpState.MOVE);
     private final Trigger stateTrig_spinning = new Trigger(m_stateTrigEventLoop, () -> m_currentState == xrpState.SPINNING);
 
-    private final Trigger trg_finishFirstMovement = new Trigger(m_stateUpdateEventLoop, () -> Commands.waitSeconds(5).isFinished());
-
-    private final Trigger trg_spin, trg_finishFinalMovement;
+    private final Trigger trg_noSpin;
 
     public Superstructure(XRPDrivetrain xrpDrivetrain, Trigger noSpinButton){
         m_xrpDrivetrain = xrpDrivetrain;
-        trg_spin = new Trigger(m_stateUpdateEventLoop, noSpinButton.and(stateTrig_spinning));
-        trg_finishFinalMovement = new Trigger(m_stateUpdateEventLoop, noSpinButton.negate().and(stateTrig_spinning));
+        trg_noSpin = new Trigger(m_stateUpdateEventLoop, noSpinButton.and(stateTrig_spinning));
+        
 
         configureTriggerBindings();
         
@@ -44,13 +42,8 @@ public class Superstructure {
         // these ones should always check that they are in the correct state
         // before activating as they will not check here - it will just
         // set state to their following state
-        trg_finishFirstMovement.onTrue(
-            Commands.runOnce(() -> m_currentState = xrpState.SPINNING)
-        );
-        trg_spin.onTrue(
-            Commands.runOnce(() -> m_currentState = xrpState.MOVE)
-        );
-        trg_finishFinalMovement.onTrue(
+
+        trg_noSpin.onTrue(
             Commands.runOnce(() -> m_currentState = xrpState.IDLE)
         );
 
@@ -62,7 +55,14 @@ public class Superstructure {
         );
 
         stateTrig_move.whileTrue(
-            Commands.run(() -> m_xrpDrivetrain.tankDrive(1, 1))
+            Commands.sequence(
+                Commands.race(
+                    Commands.run(() -> m_xrpDrivetrain.tankDrive(1, 1)),
+                    Commands.waitSeconds(1)           
+                ),
+                Commands.runOnce(() -> m_currentState = xrpState.SPINNING)  
+            )
+            
         ).onFalse(
             Commands.runOnce(() -> m_xrpDrivetrain.tankDrive(0, 0))
         );
@@ -80,6 +80,7 @@ public class Superstructure {
         // if you see anything really weird it could be that
         // this isn't updated in an order that works
         m_stateUpdateEventLoop.poll();
+        m_stateTrigEventLoop.poll();
     }
 
 
