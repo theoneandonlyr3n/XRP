@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.Sensor;
 import frc.robot.subsystems.Superstructure;
+//import frc.robot.subsystems.Superstructure;
 //import frc.robot.subsystems.SensorTwo;
 import frc.robot.subsystems.XRPArm;
 import frc.robot.subsystems.XRPDrivetrain;
@@ -15,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.auton.Auton;
-import frc.robot.auton.AutonChooser;
 import frc.robot.commands.TankDrive;
 import edu.wpi.first.wpilibj.AnalogInput;
 
@@ -28,31 +28,24 @@ import edu.wpi.first.wpilibj.AnalogInput;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final XRPDrivetrain m_xrpDrivetrain = new XRPDrivetrain();
-  //private final AnalogInput leftSensor = new AnalogInput(0);
-  //private final AnalogInput rightSensor = new AnalogInput(1);
-
 
   private final CommandXboxController driver = new CommandXboxController(0);
 
   //private final Sensor m_sensor = new Sensor();
 
   //create an object for the auton
-  //private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
+  
   private final Command m_autoCommand = new Auton(m_xrpDrivetrain);
 
   private final Superstructure m_superstructure = new Superstructure(m_xrpDrivetrain, driver.a());
 
-
   private final XRPArm m_arm = new XRPArm();
-
- 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    mapAutonOptions();
-    AutonChooser.putChooser();
+
   }
 
   /**
@@ -71,10 +64,7 @@ public class RobotContainer {
       
   }
 
-  private void mapAutonOptions() {
-        
-  }
-    
+
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
@@ -92,17 +82,17 @@ public class RobotContainer {
   }
 
  
-  //public Command getSensorTestCommand() {
-    //return Commands.run(() -> System.out.println(leftSensor.getVoltage()));
+  // public Command getSensorTestCommand() {
+  //   return Commands.run(() -> System.out.println(leftSensor.getVoltage()));
 
 
-  //}
+  // }
 
-  public void startSuperstructure() {
-    m_superstructure.start();
-  }
+   public void startSuperstructure() {
+     m_superstructure.start();
+   }
 
-  public Runnable superstructureFastPeriodic() {
-    return m_superstructure::fastPeriodic;
-  }
+   public Runnable superstructureFastPeriodic() {
+     return m_superstructure::fastPeriodic;
+   }
 }

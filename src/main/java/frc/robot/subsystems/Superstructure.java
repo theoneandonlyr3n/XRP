@@ -82,23 +82,7 @@ public class Superstructure {
         m_stateUpdateEventLoop.poll();
     }
 
-    // public Command printState() {
-    //     return Commands.run(() -> {
-    //         if (stateTrig_idle.getAsBoolean() && stateTrg_movingForwardAfterLine.getAsBoolean()) {
-    //             System.out.println("we found the issue");
-    //         }
-    //         if (stateTrg_idle.getAsBoolean()) {
-    //             System.out.println("idle");
-    //         } else if (stateTrg_movingForwardBeforeLine.getAsBoolean()) {
-    //             System.out.println("moving before line");
-    //         } else if (stateTrg_spinning.getAsBoolean()) {
-    //             System.out.println("spinning");
-    //         } else if (stateTrg_movingForwardAfterLine.getAsBoolean()) {
-    //             System.out.println("moving after line");
-    //         } else {
-    //             System.out.println("gang what the fuck");
-    //         }
-    //     });
+
 }
 
 

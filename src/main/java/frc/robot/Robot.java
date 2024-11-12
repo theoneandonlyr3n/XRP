@@ -28,15 +28,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private Sensor m_sensor = new Sensor();
-  
-  private double m_leftMotorSpeed = 1;
-
-  private double m_rightMotorSpeed = 1;
-
   private RobotContainer m_robotContainer;
-
-  private Joystick m_controller = new Joystick(0);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -65,7 +57,7 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work
-
+    CommandScheduler.getInstance().run();
     
   }
 
@@ -80,8 +72,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
     m_robotContainer.startSuperstructure();
 
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
@@ -94,15 +84,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    BooleanSupplier color = () -> m_sensor.colorBlack();
-        Trigger isBlack = new Trigger(color);
-        isBlack
-          .onTrue(
-            Commands.sequence(
-            Commands.runOnce(() -> m_leftMotorSpeed = 0),
-            Commands.runOnce(() -> m_rightMotorSpeed = 0)
-            )
-        );
+
   }
 
   @Override
